@@ -102,14 +102,17 @@ string `alphabet` (where `alphabet.charAt(0)` is the zero value, the next is 1,
 etc). If not provided, the alphabet is the string
 `'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'`.
 
-## bn.fromInteger
-## bn.bisect
-## bn.inc
-## bn.dec
-## bn.segments
-## bn.prefix
-## bn.suffix
-## bn.compare
+## bn.zero()
+
+Returns the alphabet's zero value as a bisecting number. `0` by default.
+
+## bn.bisect(num)
+## bn.inc(num)
+## bn.dec(num)
+## bn.segments(num)
+## bn.prefix(num)
+## bn.suffix(num)
+## bn.compare(a, b)
 
 # install
 

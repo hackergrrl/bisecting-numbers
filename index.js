@@ -8,8 +8,8 @@ function BisectingNumberSystem (chars) {
 
   var numbase = new NumBase(chars)
 
-  this.fromInteger = function (int) {
-    return numbase.encode(int)
+  this.zero = function () {
+    return chars.charAt(0)
   }
 
   // a==b => 0, a<b => -1, a>b => 1

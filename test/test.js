@@ -4,10 +4,7 @@ var BisectingNumberSystem = require('../index')
 test('basic', function (t) {
   var nums = new BisectingNumberSystem('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
-  t.equal('A', nums.fromInteger(0))
-  t.equal('R', nums.fromInteger(17))
-  t.equal('S', nums.inc(nums.fromInteger(17)))
-  t.equal('-R', nums.fromInteger(-17))
+  t.equal('A', nums.zero())
 
   t.equal('BBBC', nums.inc('BBBB'))
   t.equal('-B', nums.dec('A'))
@@ -36,10 +33,7 @@ test('basic', function (t) {
 test('tiny alphabet', function (t) {
   var nums = new BisectingNumberSystem('01')
 
-  t.equal('0', nums.fromInteger(0))
-  t.equal('10001', nums.fromInteger(17))
-  t.equal('10010', nums.inc(nums.fromInteger(17)))
-  t.equal('-10001', nums.fromInteger(-17))
+  t.equal('0', nums.zero())
 
   t.equal('10000', nums.inc('1111'))
   t.equal('-1', nums.dec('0'))
