@@ -9,12 +9,12 @@
 
 If used without bisection, bisecting numbers cover the integers (`..., -3, -2,
 -1, 0, 1, 2, 3, ...`) 1:1. They are represented in code as though as `string`,
-not `number`.
+not `number`. This is to represent values larger than what `number` can provide,
+amongst other reasons (see *nice properties* below).
 
 `'50'` is a valid bisecting number.
 
-However, its superpower is that it provides the means to bisect an integer into
-an integer subsystem:
+However, its superpower is that it can be bisected into an integer subsystem:
 
 ```js
 bisect('50') => '50.0'
@@ -74,28 +74,58 @@ properties, for
 [bisecting-between](https://github.com/noffle/bisecting-between), that real
 numbers don't grant:
 
-1. truly infinite (real numbers are `number` in JS, which is finite)
+1. more infinite & less lossy than JS `number`
 2. able to use a custom alphabet (`01`, `0123456789`, `0123456789ABCDEF`, etc)
-   to maximize use of the printable character space.
-3. fairly easy for humans to read and gauge ordering of number pairs
-4. minimize the string length increase when increment and decrement are used, in
+   to maximize use of the printable character space
+3. fairly easy for humans to read and gauge the ordering of number pairs
+4. minimize the growth of the string length when increment and decrement are used, in
    favour of bisecting being more space expensive
 
 
 # example
 
 ```js
-var binums = require('bisecting-numbers')
+var BisectingNumbers = require('bisecting-numbers')
 
 ```
 
 ```
-(coming soon)
+$ node
+
+> var bn = require('bisecting-numbers')('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+undefined
+
+> bn.zero()
+'A'
+
+> bn.inc('BBBB')
+'BBBC'
+
+> bn.dec('A')
+'-B'
+
+> bn.inc('ZZZ')
+'BAAA'
+
+> bn.bisect('FWE')
+'FWE.A'
+
+> bn.dec(bn.bisect('FWE')))
+'FWE.-B'
+
+> bn.compare('GO', 'GC')
+1
+
+> bn.compare('AB.FWEU', 'AB')
+1
+
+> bn.compare('AB', 'AB.-A')
+-1
 ```
 
 # methods
 
-## var bn = binums(alphabet)
+## var bn = new BisectingNumbers(alphabet)
 
 Returns an object that codifies the bisecting number system over the given
 string `alphabet` (where `alphabet.charAt(0)` is the zero value, the next is 1,
@@ -106,13 +136,38 @@ etc). If not provided, the alphabet is the string
 
 Returns the alphabet's zero value as a bisecting number. `0` by default.
 
-## bn.bisect(num)
 ## bn.inc(num)
+
+Increments `num` by one in its bisection space.
+
+```js
+bn.inc('1.0') => '1.1'
+```
+
 ## bn.dec(num)
-## bn.segments(num)
-## bn.prefix(num)
-## bn.suffix(num)
+
+Decrements `num` by one in its bisection space.
+
+```js
+bn.inc('1.0') => '1.-1'
+```
+
+## bn.bisect(num)
+
+Bisects `num` into its own new bisection space.
+
+```js
+bn.bisect('41') => '41.0'
+```
+
 ## bn.compare(a, b)
+
+Comparison method, suitable for use in e.g. `sort()`. Returns `-1` if `a < b`,
+`0` if `a === b`, and `1` if `a > b`.
+
+```js
+bn.compare('41.9.-6', '41.8.-6') => 1
+```
 
 # install
 

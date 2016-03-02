@@ -16,12 +16,6 @@ test('basic', function (t) {
   t.equal('FWE.B', nums.inc(nums.bisect('FWE')))
   t.equal('FWA.-B', nums.dec(nums.bisect('FWA')))
 
-  t.equal('FWE.', nums.prefix(nums.inc(nums.bisect('FWE'))))
-  t.equal('-B', nums.suffix(nums.dec(nums.bisect('FWA'))))
-
-  t.deepEqual(['FEW', 'WF', 'QI', 'P'], nums.segments('FEW.WF.QI.P'))
-  t.deepEqual(['FWA', '-B'], nums.segments(nums.dec(nums.bisect('FWA'))))
-
   t.equal(1, nums.compare('GO', 'GC'))
   t.equal(1, nums.compare('AB.FWEU', 'AB'))
   t.equal(-1, nums.compare('AB', 'AB.-A'))
@@ -42,9 +36,6 @@ test('tiny alphabet', function (t) {
   t.equal('100.0', nums.bisect('100'))
   t.equal('100.1', nums.inc(nums.bisect('100')))
   t.equal('100.-1', nums.dec(nums.bisect('100')))
-
-  t.equal('11.', nums.prefix(nums.inc(nums.bisect('11'))))
-  t.equal('-1', nums.suffix(nums.dec(nums.bisect('11'))))
 
   t.equal(1, nums.compare('100', '11'))
   t.equal(-1, nums.compare('11', '100'))

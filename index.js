@@ -15,8 +15,8 @@ function BisectingNumberSystem (chars) {
   // a==b => 0, a<b => -1, a>b => 1
   this.compare = function (a, b) {
     if (a.indexOf('.') !== -1 || b.indexOf('.') !== -1) {
-      var as = this.segments(a)
-      var bs = this.segments(b)
+      var as = segments(a)
+      var bs = segments(b)
       for (var i = 0; i < Math.min(as.length, bs.length); i++) {
         var result = this.compare(as[i], bs[i])
         if (result !== 0) {
@@ -38,14 +38,14 @@ function BisectingNumberSystem (chars) {
   }
 
   // return a list of the .-delimited segments of a number
-  this.segments = function (v) {
+  var segments = function (v) {
     return v.split('.')
   }
 
   this.inc = function (v) {
     // Increment the suffix only
     if (v.indexOf('.') !== -1) {
-      return this.prefix(v) + this.inc(this.suffix(v))
+      return prefix(v) + this.inc(suffix(v))
     }
 
     return numbase.encode(parseInt(numbase.decode(v), 10) + 1)
@@ -54,13 +54,13 @@ function BisectingNumberSystem (chars) {
   this.dec = function (v) {
     // Decrement the suffix only
     if (v.indexOf('.') !== -1) {
-      return this.prefix(v) + this.dec(this.suffix(v))
+      return prefix(v) + this.dec(suffix(v))
     }
 
     return numbase.encode(parseInt(numbase.decode(v), 10) - 1)
   }
 
-  this.prefix = function (v) {
+  var prefix = function (v) {
     if (v.indexOf('.') === -1) {
       return ''
     } else {
@@ -68,7 +68,7 @@ function BisectingNumberSystem (chars) {
     }
   }
 
-  this.suffix = function (v) {
+  var suffix = function (v) {
     if (v.indexOf('.') === -1) {
       return v
     } else {
