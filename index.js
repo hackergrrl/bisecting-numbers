@@ -76,7 +76,7 @@ function BisectingNumberSystem (chars) {
     }
   }
 
-  this.branch = function (v) {
+  this.bisect = function (v) {
     return v + '.' + chars.charAt(0)
   }
 }
