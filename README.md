@@ -8,7 +8,8 @@
 ## what *is* this?
 
 If used without bisection, bisecting numbers cover the integers (`..., -3, -2,
--1, 0, 1, 2, 3, ...`) 1:1. They are represented as strings though, not integers.
+-1, 0, 1, 2, 3, ...`) 1:1. They are represented in code as though as `string`,
+not `number`.
 
 `'50'` is a valid bisecting number.
 
