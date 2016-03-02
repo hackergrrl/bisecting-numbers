@@ -13,7 +13,7 @@ not `number`.
 
 `'50'` is a valid bisecting number.
 
-However, it's superpower is that it provides the means to bisect an integer into
+However, its superpower is that it provides the means to bisect an integer into
 an integer subsystem:
 
 ```js
@@ -50,10 +50,36 @@ compare('50', '50.19.53.14009') => -1
 compare('50.19.53.14009', '51') => -1
 ```
 
+## just use real numbers!
 
-## why is this useful?
+It's true! `1` can be "bisected" to `1.1`, which has an infinite number of
+values betweeen 1 and 2.
 
-(coming soon)
+You could also bisect further by making it so `bisect(1.1) => 1.01`, and then
+increment in amounts of `0.01`.
+
+How do you decrement though? You can't make the a subsystem negative without
+negating the entire value!
+
+Well, you could make it so `bisect(1) => 1.5`. Now values < 1.5 are "negative".
+You can increment such that `inc(1.9) => 1.51`, etc. You can decrement the same
+way, so that `dec(1.5) => 1.4`, and `dec(1.1) => 1.54`.
+
+You could keep on applying awkward rules like this to achieve the same effect.
+
+## nice properties
+
+The real motivation for this module came from a desire for the following
+properties, for
+[bisecting-between](https://github.com/noffle/bisecting-between), that real
+numbers don't grant:
+
+1. truly infinite (real numbers are `number` in JS, which is finite)
+2. able to use a custom alphabet (`01`, `0123456789`, `0123456789ABCDEF`, etc)
+   to maximize use of the printable character space.
+3. fairly easy for humans to read and gauge ordering of number pairs
+4. minimize the string length increase when increment and decrement are used, in
+   favour of bisecting being more space expensive
 
 
 # example
