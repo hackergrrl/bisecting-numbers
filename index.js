@@ -1,8 +1,8 @@
 var NumBase = require('numbase')
 var defined = require('defined')
 
-function BisectingNumSystem (chars) {
-  if (!(this instanceof BisectingNumSystem)) { return new BisectingNumSystem(chars) }
+function BisectingNumberSystem (chars) {
+  if (!(this instanceof BisectingNumberSystem)) { return new BisectingNumberSystem(chars) }
 
   var chars = defined(chars, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')
 
@@ -81,4 +81,4 @@ function BisectingNumSystem (chars) {
   }
 }
 
-module.exports = BisectingNumSystem
+module.exports = BisectingNumberSystem

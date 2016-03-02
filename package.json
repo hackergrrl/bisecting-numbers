@@ -1,9 +1,9 @@
 {
-  "name": "bisecting-number-system",
+  "name": "bisecting-numbers",
   "description": "alt integer-like number system where any number can be bisected to form infinite integer subsystems",
   "version": "0.0.0",
   "repository": {
-    "url": "git://github.com/noffle/binums.git"
+    "url": "git://github.com/noffle/bisecting-numbers.git"
   },
   "main": "index.js",
   "scripts": {
