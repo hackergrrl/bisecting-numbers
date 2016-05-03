@@ -1,7 +1,7 @@
 {
   "name": "bisecting-numbers",
   "description": "Integer-like number system where any number can be bisected to form infinite integer subsystems.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "git://github.com/noffle/bisecting-numbers.git"
   },
