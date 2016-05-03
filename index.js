@@ -14,32 +14,7 @@ function BisectingNumberSystem (chars) {
 
   // a==b => 0, a<b => -1, a>b => 1
   this.compare = function (a, b) {
-    if (a.indexOf('.') !== -1 || b.indexOf('.') !== -1) {
-      var as = segments(a)
-      var bs = segments(b)
-      for (var i = 0; i < Math.min(as.length, bs.length); i++) {
-        var result = this.compare(as[i], bs[i])
-        if (result !== 0) {
-          return result
-        }
-      }
-      return as.length - bs.length
-    } else {
-      var av = parseInt(numbase.decode(a), 10)
-      var bv = parseInt(numbase.decode(b), 10)
-      if (av < bv) {
-        return -1
-      } else if (av > bv) {
-        return 1
-      } else {
-        return 0
-      }
-    }
-  }
-
-  // return a list of the .-delimited segments of a number
-  var segments = function (v) {
-    return v.split('.')
+    return compare(numbase, a, b)
   }
 
   this.inc = function (v) {
@@ -78,6 +53,35 @@ function BisectingNumberSystem (chars) {
 
   this.bisect = function (v) {
     return v + '.' + chars.charAt(0)
+  }
+}
+
+// return a list of the .-delimited segments of a number
+function segments (v) {
+  return v.split('.')
+}
+
+function compare (numbase, a, b) {
+  if (a.indexOf('.') !== -1 || b.indexOf('.') !== -1) {
+    var as = segments(a)
+    var bs = segments(b)
+    for (var i = 0; i < Math.min(as.length, bs.length); i++) {
+      var result = compare(numbase, as[i], bs[i])
+      if (result !== 0) {
+        return result
+      }
+    }
+    return as.length - bs.length
+  } else {
+    var av = parseInt(numbase.decode(a), 10)
+    var bv = parseInt(numbase.decode(b), 10)
+    if (av < bv) {
+      return -1
+    } else if (av > bv) {
+      return 1
+    } else {
+      return 0
+    }
   }
 }
 

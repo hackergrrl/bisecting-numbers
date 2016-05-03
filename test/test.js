@@ -21,6 +21,9 @@ test('basic', function (t) {
   t.equal(-1, nums.compare('AB', 'AB.-A'))
   t.equal(0, nums.compare('AB.FWEU', 'AB.FWEU'))
 
+  t.equal(nums.compare('B', '-B.A'), 1)
+  t.equal(nums.compare('J', 'K'), -1)
+
   t.end()
 })
 
@@ -40,6 +43,24 @@ test('tiny alphabet', function (t) {
   t.equal(1, nums.compare('100', '11'))
   t.equal(-1, nums.compare('11', '100'))
   t.equal(0, nums.compare('11', '11'))
+
+  t.end()
+})
+
+test('full alphabet', function (t) {
+  var nums = new BisectingNumberSystem()
+
+  t.equal('0', nums.zero())
+
+  t.equal(0, nums.compare('0', '0'))
+
+  // bidirectional
+  t.equal(-1, nums.compare('-1', '0'))
+  t.equal(-1, nums.compare('-1', '-1.0'))
+  t.equal(-1, nums.compare('-1.0', '1'))
+  t.equal(1, nums.compare('0', '-1'))
+  t.equal(1, nums.compare('-1.0', '-1'))
+  t.equal(1, nums.compare('1', '-1.0'))
 
   t.end()
 })
