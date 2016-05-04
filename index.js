@@ -62,6 +62,9 @@ function segments (v) {
 }
 
 function compare (numbase, a, b) {
+  if (a && !b) return 1
+  if (!a && b) return -1
+
   if (a.indexOf('.') !== -1 || b.indexOf('.') !== -1) {
     var as = segments(a)
     var bs = segments(b)
